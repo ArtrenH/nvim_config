@@ -31,7 +31,6 @@ function M.setup()
       vim.cmd [[packadd packer.nvim]]
     end
     vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerCompile"
-    print("success")
   end
 
   -- Plugins
@@ -74,6 +73,7 @@ function M.setup()
 
   packer_init()
 
+  print("packer initialised...")
   local packer = require "packer"
   packer.init(conf)
   packer.startup(plugins)
