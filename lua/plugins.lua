@@ -63,6 +63,11 @@ function M.setup()
       end,
     }
 
+    use {
+      "folke/neodev.nvim",
+    }
+
+
     if packer_bootstrap then
       print "Restart Neovim required after installation!"
       require("packer").sync()
