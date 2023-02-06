@@ -40,7 +40,6 @@ function M.setup()
     use {
       "projekt0n/github-nvim-theme", tag = 'v0.0.7',
       config = function()
-        print("unit colorscheme...")
         require('github-theme').setup({
             theme_style = "dark",
           })
