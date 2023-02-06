@@ -63,8 +63,13 @@ function M.setup()
       end,
     }
 
+    -- lua language server
     use {
       "folke/neodev.nvim",
+    }
+    -- lua language server
+    use {
+      "neovim/nvim-lspconfig"
     }
 
 
