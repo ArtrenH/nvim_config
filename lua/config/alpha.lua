@@ -24,7 +24,7 @@ function M.setup()
     dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
     dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
     dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
-    dashboard.button("E", "  Open current directory", ":Explore"),
+    dashboard.button("E", "  Open current directory", ":Explore<CR>"),
   }
 
   local function footer()
