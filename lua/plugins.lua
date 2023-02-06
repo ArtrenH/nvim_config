@@ -71,7 +71,6 @@ function M.setup()
 
   packer_init()
 
-  print("packer initialised...")
   local packer = require "packer"
   packer.init(conf)
   packer.startup(plugins)
