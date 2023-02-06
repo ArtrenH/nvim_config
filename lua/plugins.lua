@@ -18,7 +18,7 @@ function M.setup()
   local function packer_init()
     local fn = vim.fn
     local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-    print install_path
+    print(install_path)
     if fn.empty(fn.glob(install_path)) > 0 then
       packer_bootstrap = fn.system {
         "git",
@@ -41,7 +41,7 @@ function M.setup()
     use {
       "projekt0n/github-nvim-theme",
       config = function()
-        print "unit colorscheme..."
+        print("unit colorscheme...")
         require('github-nvim-theme').setup({
             theme_style = "dark",
           })
