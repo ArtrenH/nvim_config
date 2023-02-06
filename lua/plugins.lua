@@ -85,7 +85,6 @@ function M.setup()
   packer.init(conf)
   packer.startup(plugins)
 
-  require'lspconfig'.pyright.setup{}
 end
 
 return M
