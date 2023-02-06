@@ -47,7 +47,7 @@ function M.setup()
     }
 
     -- Startup screen
-    --[[ use {
+    use {
       "goolord/alpha-nvim",
       config = function()
         require("config.alpha").setup()
