@@ -41,7 +41,7 @@ function M.setup()
       "projekt0n/github-nvim-theme", tag = 'v0.0.7',
       config = function()
         require('github-theme').setup({
-            theme_style = "dark_default",
+            theme_style = "dark",
           })
         end,
     }
@@ -63,13 +63,14 @@ function M.setup()
       end,
     }
 
+		-- general lsp config (language server protocol)
+		use {
+			'neovim/nvim-lspconfig' 
+		}
+
     -- lua language server
     use {
       "folke/neodev.nvim",
-    }
-    -- lua language server
-    use {
-      "neovim/nvim-lspconfig"
     }
 
     -- Rust config
@@ -80,6 +81,23 @@ function M.setup()
       'williamboman/mason-lspconfig.nvim'
     }
 
+    use {
+			'simrat39/rust-tools.nvim'
+		}
+		
+		-- Completion framework:
+    use 'hrsh7th/nvim-cmp'
+
+    -- LSP completion source:
+    use 'hrsh7th/cmp-nvim-lsp'
+
+    -- Useful completion sources:
+    use 'hrsh7th/cmp-nvim-lua'
+    use 'hrsh7th/cmp-nvim-lsp-signature-help'
+    use 'hrsh7th/cmp-vsnip'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/vim-vsnip'
 
     if packer_bootstrap then
       print "Restart Neovim required after installation!"
