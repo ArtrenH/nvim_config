@@ -72,6 +72,14 @@ function M.setup()
       "neovim/nvim-lspconfig"
     }
 
+    -- Rust config
+    use {
+      'williamboman/mason.nvim'
+    }
+    use {
+      'williamboman/mason-lspconfig.nvim'
+    }
+
 
     if packer_bootstrap then
       print "Restart Neovim required after installation!"
