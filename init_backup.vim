@@ -23,9 +23,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-Plug 'rust-lang/rust.vim'
-Plug 'vim-syntastic/syntastic'
-
 call plug#end()
 
 let g:deoplete#enable_at_startup = 1

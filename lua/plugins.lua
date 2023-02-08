@@ -50,7 +50,7 @@ function M.setup()
     use {
       "goolord/alpha-nvim",
       config = function()
-        require("config.alpha").setup()
+        require("plugin_config.alpha").setup()
       end,
     } --]]
 
@@ -59,32 +59,40 @@ function M.setup()
       "TimUntersberger/neogit",
       requires = "nvim-lua/plenary.nvim",
       config = function()
-        require("config.neogit").setup()
+        require("plugin_config.neogit").setup()
       end,
     }
 
+		-- basic Plugins
+		use 'jiangmiao/auto-pairs'
+		use 'gi1242/vim-tex-autoclose'
+		-- Vim Plugins
+		use {'lervag/vimtex'}
+		-- Snippets
+		use {'sirver/ultisnips',
+			config = function ()
+				require('ultisnips').setup {
+				}
+			end
+		}
+
 		-- general lsp config (language server protocol)
-		use {
-			'neovim/nvim-lspconfig' 
-		}
-
-    -- lua language server
-    use {
-      "folke/neodev.nvim",
-    }
-
+		use {'neovim/nvim-lspconfig'}
     -- Rust config
-    use {
-      'williamboman/mason.nvim'
-    }
-    use {
-      'williamboman/mason-lspconfig.nvim'
-    }
+    use {'williamboman/mason.nvim'}
+    use {'williamboman/mason-lspconfig.nvim'}
+    use {'simrat39/rust-tools.nvim'}
 
-    use {
-			'simrat39/rust-tools.nvim'
+		use {'kyazdani42/nvim-tree.lua'}
+		use {'preservim/tagbar'}
+		use {'folke/todo-comments.nvim'}
+		use {
+			"folke/trouble.nvim",
+			requires = "nvim-tree/nvim-web-devicons",
+			config = function()
+				require("trouble").setup {}
+			end
 		}
-		
 		-- Completion framework:
     use 'hrsh7th/nvim-cmp'
 
@@ -98,6 +106,12 @@ function M.setup()
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/vim-vsnip'
+
+		-- use 'nvim-treesitter/nvim-treesitter'
+
+    -- lua language server
+    use {"folke/neodev.nvim"}
+		use {'numirias/semshi'}
 
     if packer_bootstrap then
       print "Restart Neovim required after installation!"
