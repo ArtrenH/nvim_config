@@ -69,12 +69,18 @@ function M.setup()
 		-- Vim Plugins
 		use {'lervag/vimtex'}
 		-- Snippets
-		use {'sirver/ultisnips',
-			config = function ()
-				require('ultisnips').setup {
-				}
-			end
-		}
+		--use {'sirver/ultisnips'}
+		--use({
+			--"L3MON4D3/LuaSnip",
+			-- follow latest release.
+			--tag = "v<CurrentMajor>.*",
+			-- install jsregexp (optional!:).
+			--run = "make install_jsregexp"
+		--})
+
+		use {'sirver/ultisnips'}
+		use {'ckunte/latex-snippets-vim'}
+
 
 		-- general lsp config (language server protocol)
 		use {'neovim/nvim-lspconfig'}
@@ -111,7 +117,20 @@ function M.setup()
 
     -- lua language server
     use {"folke/neodev.nvim"}
-		use {'numirias/semshi'}
+		-- python library highlighting
+		--use {'numirias/semshi', ft = 'python', run = ':UpdateRemotePlugins',
+			--config = function()
+				-- vim.g["semshi#excluded_buffers"] = {'*'}
+				-- vim.g["semshi#excluded_hl_groups"] = {'local', 'imports'}
+			--end
+		--}
+		-- markdown
+		use {'ixru/nvim-markdown'}
+		use {'iamcco/markdown-preview.nvim'}
+
+		-- image viewer
+		use {'edluffy/hologram.nvim'}
+
 
     if packer_bootstrap then
       print "Restart Neovim required after installation!"

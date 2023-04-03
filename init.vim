@@ -1,16 +1,18 @@
+
+
+
+lua << EOF
 require("plugins").setup()
 
 require("settings.opts")
 require('settings.tabwidth')
 -- general lsp config
 require('core.lsp_config')
--- rust config
---require('core.rt_config')
 -- cmp config
 require('core.cmp_config')
 require('core.diagnostics_config')
 
-
+--require("luasnip.loaders.from_snipmate").lazy_load()
 
 -- Treesitter Plugin Setup 
 --[[ require('nvim-treesitter.configs').setup {
@@ -29,4 +31,15 @@ require('core.diagnostics_config')
 } -- ]]
 
 
+EOF
 
+" basic options (easier with vimscript than with lua) "
+let g:UltiSnipsExpandTrigger = '<tab>' "snippet shortcut"
+let g:vim_markdown_math = 1 "math highlighting in markdown"
+
+" statusline options"
+set statusline=\PATH:\ %r%F\ \ \ \ \LINE:\ %l/%L/%P\ TIME:\ %{strftime('%c')}
+let timer = timer_start(50, 'UpdateStatusBar',{'repeat':-1})
+function! UpdateStatusBar(timer)
+  execute 'let &ro = &ro'
+endfunction

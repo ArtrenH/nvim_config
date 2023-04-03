@@ -121,6 +121,16 @@ _G.packer_plugins = {
     path = "/Users/artrenh/.local/share/nvim/site/pack/packer/start/github-nvim-theme",
     url = "https://github.com/projekt0n/github-nvim-theme"
   },
+  ["latex-snippets-vim"] = {
+    loaded = true,
+    path = "/Users/artrenh/.local/share/nvim/site/pack/packer/start/latex-snippets-vim",
+    url = "https://github.com/ckunte/latex-snippets-vim"
+  },
+  ["markdown-preview.nvim"] = {
+    loaded = true,
+    path = "/Users/artrenh/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
+    url = "https://github.com/iamcco/markdown-preview.nvim"
+  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/Users/artrenh/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -152,6 +162,11 @@ _G.packer_plugins = {
     path = "/Users/artrenh/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-markdown"] = {
+    loaded = true,
+    path = "/Users/artrenh/.local/share/nvim/site/pack/packer/start/nvim-markdown",
+    url = "https://github.com/ixru/nvim-markdown"
+  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/Users/artrenh/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
@@ -176,11 +191,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/artrenh/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
     url = "https://github.com/simrat39/rust-tools.nvim"
-  },
-  semshi = {
-    loaded = true,
-    path = "/Users/artrenh/.local/share/nvim/site/pack/packer/start/semshi",
-    url = "https://github.com/numirias/semshi"
   },
   tagbar = {
     loaded = true,
@@ -229,14 +239,14 @@ time([[Config for alpha-nvim]], false)
 time([[Config for github-nvim-theme]], true)
 try_loadstring("\27LJ\2\nR\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\16theme_style\tdark\nsetup\17github-theme\frequire\0", "config", "github-nvim-theme")
 time([[Config for github-nvim-theme]], false)
--- Config for: neogit
-time([[Config for neogit]], true)
-try_loadstring("\27LJ\2\nB\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\25plugin_config.neogit\frequire\0", "config", "neogit")
-time([[Config for neogit]], false)
 -- Config for: trouble.nvim
 time([[Config for trouble.nvim]], true)
 try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
 time([[Config for trouble.nvim]], false)
+-- Config for: neogit
+time([[Config for neogit]], true)
+try_loadstring("\27LJ\2\nB\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\25plugin_config.neogit\frequire\0", "config", "neogit")
+time([[Config for neogit]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

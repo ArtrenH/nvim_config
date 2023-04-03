@@ -1,6 +1,27 @@
-require('mason').setup()
+require('mason').setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
 require('mason-lspconfig').setup {
-	ensure_installed = {"sumneko_lua", "rust_analyzer", "texlab", "pyright"},
+	ensure_installed = {
+		--"bash_language_server",
+		--"codelldb",
+		--"css_lsp",
+		--"html_lsp",
+		--"json_lsp",
+		--"lua-language-server",
+		"pyright",
+		"rust_analyzer",
+		--"svelte-language-server",
+		"texlab",
+		--"typescript-language-server",
+		--"vim-language-server"
+	},
 	automatic_installation = true,
 }
 
@@ -13,9 +34,6 @@ local on_attach = function(_, _)
 	vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
 end
 
-require('lspconfig').sumneko_lua.setup {
-	on_attach = on_attach
-}
 
 require('lspconfig').rust_analyzer.setup {
 	on_attach = on_attach
