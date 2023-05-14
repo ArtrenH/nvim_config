@@ -12,7 +12,73 @@ def env(name):
 endglobal
 
 
+
+
+
 snippet template "Basic template" b
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[ngerman]{babel}
+%\usepackage[T1]{fontenc}
+
+% Kopfzeilen
+\usepackage{scrlayer-scrpage}
+% Bilder
+\usepackage{graphicx}
+\usepackage{wrapfig}
+% chemische Formeln
+\usepackage[version=4]{mhchem}
+\usepackage{textcomp, gensymb}
+
+% colored text
+\usepackage{xcolor}
+
+
+\usepackage{mathtools}
+% für Links
+\usepackage{hyperref}
+
+
+% example: table sizes
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{varwidth}
+
+
+\usepackage{blindtext}
+\usepackage{enumerate}
+
+\usepackage[a4paper, left=2cm, right=2cm, top=3cm]{geometry}
+
+\setlength{\headheight}{13pt}
+
+
+
+\begin{document}
+\ihead{Arthur Henninger}
+%\ihead{\_qRtrenH\&}
+\chead{}
+\ohead{}
+
+\cfoot{\pagemark}
+
+
+\begin{huge}
+\begin{center}
+	$0
+\end{center}
+\end{huge}
+
+
+
+\end{document}
+
+endsnippet
+
+
+
+snippet template1 "Basic template" b
 \documentclass[a4paper]{article}
 
 \usepackage[utf8]{inputenc}
