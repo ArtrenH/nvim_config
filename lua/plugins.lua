@@ -118,12 +118,10 @@ function M.setup()
     -- lua language server
     use {"folke/neodev.nvim"}
 		-- python library highlighting
-		--use {'numirias/semshi', ft = 'python', run = ':UpdateRemotePlugins',
-			--config = function()
-				-- vim.g["semshi#excluded_buffers"] = {'*'}
-				-- vim.g["semshi#excluded_hl_groups"] = {'local', 'imports'}
-			--end
-		--}
+		use {'numirias/semshi', ft = 'python', run = ':UpdateRemotePlugins',
+			config = function()
+			end
+		}
 		-- markdown
 		use {'ixru/nvim-markdown'}
 		use {'iamcco/markdown-preview.nvim'}

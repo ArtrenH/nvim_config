@@ -44,3 +44,18 @@ let timer = timer_start(50, 'UpdateStatusBar',{'repeat':-1})
 function! UpdateStatusBar(timer)
   execute 'let &ro = &ro'
 endfunction
+
+function MyCustomHighlights()
+    hi semshiGlobal ctermfg=green guifg=#cba9f9
+    hi semshiLocal ctermfg=green guifg=#cba9f9
+    hi semshiImported ctermfg=green guifg=#cba9f9
+    hi semshiBuiltin ctermfg=green guifg=#cba9f9
+endfunction
+autocmd FileType python call MyCustomHighlights()
+
+" notes:
+" https://github.com/vim-python/python-syntax
+" https://github.com/nvim-treesitter/nvim-treesitter
+" https://stackoverflow.com/questions/69850464/why-doesnt-neovim-highlight-the-entire-syntax
+
+
