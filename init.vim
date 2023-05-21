@@ -46,8 +46,8 @@ function! UpdateStatusBar(timer)
 endfunction
 
 function MyCustomHighlights()
-    hi semshiGlobal ctermfg=green guifg=#cba9f9
-    hi semshiLocal ctermfg=green guifg=#cba9f9
+    hi semshiGlobal ctermfg=green guifg=000000
+    hi semshiLocal ctermfg=green guifg=#000000
     hi semshiImported ctermfg=green guifg=#cba9f9
     hi semshiBuiltin ctermfg=green guifg=#cba9f9
 endfunction
