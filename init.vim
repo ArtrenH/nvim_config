@@ -33,7 +33,9 @@ require('core.diagnostics_config')
 
 EOF
 
+
 " basic options (easier with vimscript than with lua) "
+set nofoldenable
 let g:UltiSnipsExpandTrigger = '<tab>' "snippet shortcut"
 let g:UltiSnipsSnippetsDir = "~/.nvim/UltiSnips"
 let g:vim_markdown_math = 1 "math highlighting in markdown"
@@ -46,12 +48,13 @@ function! UpdateStatusBar(timer)
 endfunction
 
 function MyCustomHighlights()
-    hi semshiGlobal ctermfg=green guifg=000000
+    hi semshiGlobal ctermfg=green guifg=#000000
     hi semshiLocal ctermfg=green guifg=#000000
     hi semshiImported ctermfg=green guifg=#cba9f9
     hi semshiBuiltin ctermfg=green guifg=#cba9f9
 endfunction
 autocmd FileType python call MyCustomHighlights()
+let g:semshi#python#self_call_syn_group = 'Function'
 
 " notes:
 " https://github.com/vim-python/python-syntax

@@ -113,8 +113,18 @@ function M.setup()
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/vim-vsnip'
 
-		-- use 'nvim-treesitter/nvim-treesitter'
-
+		use {
+				'nvim-treesitter/nvim-treesitter',
+				run = ':TSUpdate',
+				config = function()
+					require("nvim-treesitter.configs").setup {
+						ensure_installed = "python",
+						highlight = {
+							enable = true,
+						}
+					}
+				end
+		}
     -- lua language server
     use {"folke/neodev.nvim"}
 		-- python library highlighting
