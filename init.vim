@@ -30,7 +30,6 @@ require('core.diagnostics_config')
   }
 } -- ]]
 
-
 EOF
 
 

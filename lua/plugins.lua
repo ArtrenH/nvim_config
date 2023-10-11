@@ -138,6 +138,16 @@ function M.setup()
 
 		-- image viewer
 		use {'edluffy/hologram.nvim'}
+		
+		use {
+			'nvim-lualine/lualine.nvim',
+			requires={'nvim-tree/nvim-web-devicons', opt=true},
+			config = function()
+				require("lualine").setup(
+					{theme="materialize"}
+				)
+			end
+		}
 
 
     if packer_bootstrap then
