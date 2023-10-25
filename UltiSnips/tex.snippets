@@ -13,8 +13,6 @@ endglobal
 
 
 
-
-
 snippet template "Basic template" b
 
 \documentclass{article}
@@ -73,6 +71,86 @@ snippet template "Basic template" b
 
 
 \end{document}
+
+endsnippet
+
+snippet math_template "Math template" b
+\documentclass{report}
+
+\input{~/dotfiles/tex/templates/preamble.tex}
+\input{~/dotfiles/tex/templates/macros.tex}
+\input{~/dotfiles/tex/templates/letterfonts.tex}
+
+\title{\Huge{Some Class}\\Random Examples}
+\author{\huge{Your Name}}
+\date{}
+
+\usepackage{silence}
+\WarningFilter{latexfont}{}
+
+\begin{document}
+
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+
+\chapter{}
+\section{Random Examples}
+\dfn{}{
+
+}
+
+\end{document}
+
+endsnippet
+
+snippet uebung_template "Übung template" b
+\documentclass{report}
+
+\input{~/dotfiles/tex/templates/preamble.tex}
+\input{~/dotfiles/tex/templates/macros.tex}
+\input{~/dotfiles/tex/templates/letterfonts.tex}
+
+\usepackage{silence}
+\WarningFilter{latexfont}{}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setlength{\headheight}{12.8064pt}
+
+\begin{document}
+
+\lhead{Arthur Henninger}
+\chead{ - Übung 1}
+\rhead{ Tutorium }
+
+
+\section*{Aufgabe 1}
+
+\end{document}
+
+endsnippet
+
+
+snippet math_commands "Math commands" b
+
+\newcommand{\rvec}[1]{
+    \begin{pmatrix}
+        #1
+    \end{pmatrix}
+}
+\newcommand{\brackets}[1]{
+	\left(#1 \right)
+}
+\newcommand{\curly}[1]{
+	\left\{#1 \right\}
+}
+\newcommand{\angular}[1]{
+	\left\[#1 \right\]
+}
 
 endsnippet
 
@@ -166,7 +244,7 @@ snippet pac "Package" b
 endsnippet
 
 snippet => "implies" Ai
-\implies
+\implies 
 endsnippet
 
 snippet =< "implied by" Ai
@@ -181,7 +259,7 @@ endsnippet
 snippet mk "Math" wA
 $${1}$`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
-	snip.rv = ' '
+	snip.rv = ''
 else:
 	snip.rv = ''
 `$2
@@ -403,7 +481,7 @@ endsnippet
 
 snippet >= "geq" iA
 \ge 
-/endsnippet
+endsnippet
 
 context "math()"
 snippet EE "geq" iA
@@ -601,6 +679,10 @@ endsnippet
 
 snippet NN "n" iA
 \N
+endsnippet
+
+snippet KK "n" iA
+\K
 endsnippet
 
 snippet Nn "cap" iA

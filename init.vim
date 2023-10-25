@@ -61,3 +61,6 @@ let g:semshi#python#self_call_syn_group = 'Function'
 " https://stackoverflow.com/questions/69850464/why-doesnt-neovim-highlight-the-entire-syntax
 
 
+let g:vimtex_view_method = 'zathura'
+let g:zathura_command = 'zathura'
+
