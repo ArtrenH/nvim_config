@@ -144,7 +144,7 @@ function M.setup()
 			requires={'nvim-tree/nvim-web-devicons', opt=true},
 			config = function()
 				require("lualine").setup(
-					{theme="materialize"}
+					{}
 				)
 			end
 		}
