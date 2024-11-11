@@ -8,6 +8,10 @@ require('core.lsp_config')
 require('core.cmp_config')
 require('core.diagnostics_config')
 
+let g:vimtex_quickfix_latexlog = {
+    'references' : 0,
+}
+
 --require("luasnip.loaders.from_snipmate").lazy_load()
 
 -- Treesitter Plugin Setup 

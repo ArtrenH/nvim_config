@@ -110,16 +110,7 @@ endsnippet
 snippet uebung_template "Übung template" b
 \documentclass{report}
 
-\input{~/dotfiles/tex/templates/preamble_modified.tex}
-\input{~/dotfiles/tex/templates/macros.tex}
-\input{~/dotfiles/tex/templates/letterfonts.tex}
-
-\usepackage{silence}
-\WarningFilter{latexfont}{}
-
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\setlength{\headheight}{12.8064pt}
+\input{~/dotfiles/tex/templates/input.tex}
 
 \begin{document}
 
@@ -497,11 +488,6 @@ snippet pw "to the ... power" iA
 ^{$1}$0
 endsnippet
 
-context "math()"
-snippet rd "to the ... power" iA
-^{($1)}$0
-endsnippet
-
 snippet __ "subscript" iA
 _{$1}$0
 endsnippet
@@ -524,12 +510,12 @@ endsnippet
 
 context "math()"
 snippet EE "geq" iA
-\exists 
+\exists\, 
 endsnippet
 
 context "math()"
 snippet AA "forall" iA
-\forall 
+\,\forall 
 endsnippet
 
 context "math()"
@@ -619,6 +605,7 @@ snippet xx "cross" iA
 endsnippet
 
 priority 100
+context "math()"
 snippet ** "cdot" iA
 \cdot 
 endsnippet
@@ -670,16 +657,16 @@ snippet compl "complement" iA
 endsnippet
 
 context "math()"
-snippet \\\ "setminus" iA
-\setminus
+snippet \\\ "backslash" iA
+\backslash 
 endsnippet
 
 snippet >> ">>" iA
-\gg
+\gg 
 endsnippet
 
 snippet << "<<" iA
-\ll
+\ll 
 endsnippet
 
 
