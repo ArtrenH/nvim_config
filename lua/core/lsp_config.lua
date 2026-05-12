@@ -34,29 +34,37 @@ local on_attach = function(_, _)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
 end
 
-local lspconfig = require('lspconfig');
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lspconfig.rust_analyzer.setup {
-    on_attach = on_attach
-}
+vim.lsp.config('rust_analyzer', {
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
 
-lspconfig.texlab.setup {
-    on_attach = on_attach
-}
+vim.lsp.config('texlab', {
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
 
-lspconfig.pyright.setup {
-    on_attach = on_attach
-}
+vim.lsp.config('pyright', {
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
 
-lspconfig.emmet_ls.setup({
+vim.lsp.config('emmet_ls', {
+    on_attach = on_attach,
     capabilities = capabilities,
     filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue", "jinja" },
     init_options = {
         html = {
             options = {
-                -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
                 ["bem.enabled"] = true,
             },
         },
     }
 })
+
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('texlab')
+vim.lsp.enable('pyright')
+vim.lsp.enable('emmet_ls')

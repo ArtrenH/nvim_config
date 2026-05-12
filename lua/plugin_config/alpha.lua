@@ -29,8 +29,8 @@ function M.setup()
   }
 
   local function footer()
-    -- Number of plugins
-    local total_plugins = #vim.tbl_keys(packer_plugins)
+    local lazy_stats = require("lazy").stats()
+    local total_plugins = lazy_stats.count
     local datetime = os.date "%d-%m-%Y %H:%M:%S"
     local plugins_text = "\t" .. total_plugins .. " plugins " .. datetime
 

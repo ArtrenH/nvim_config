@@ -1,169 +1,124 @@
 local M = {}
 
 function M.setup()
-    -- Indicate first time installation
-    local packer_bootstrap = false
-
-    -- packer.nvim configuration
-    local conf = {
-        display = {
-            open_fn = function()
-                return require("packer.util").float { border = "rounded" }
-            end,
-        },
-    }
-
-    -- Check if packer.nvim is installed
-    -- Run PackerCompile if there are changes in this file
-    local function packer_init()
-        local fn = vim.fn
-        local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-        if fn.empty(fn.glob(install_path)) > 0 then
-            packer_bootstrap = fn.system {
-                "git",
-                "clone",
-                "--depth",
-                "1",
-                "https://github.com/wbthomason/packer.nvim",
-                install_path,
-            }
-            vim.cmd [[packadd packer.nvim]]
-        end
-        vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerCompile"
+    local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+    if not vim.uv.fs_stat(lazypath) then
+        vim.fn.system({
+            "git",
+            "clone",
+            "--filter=blob:none",
+            "https://github.com/folke/lazy.nvim.git",
+            "--branch=stable",
+            lazypath,
+        })
     end
+    vim.opt.rtp:prepend(lazypath)
 
-    -- Plugins
-    local function plugins(use)
-        use { "wbthomason/packer.nvim" }
-
-        -- Colorscheme
-        use {
-            "projekt0n/github-nvim-theme", tag = 'v0.0.7',
+    require("lazy").setup({
+        {
+            "projekt0n/github-nvim-theme",
+            tag = "v0.0.7",
             config = function()
-                require('github-theme').setup({
+                require("github-theme").setup({
                     theme_style = "dark",
                 })
+                vim.cmd("colorscheme github_dark")
             end,
-        }
+        },
 
-        -- Startup screen
-        use {
+        {
             "goolord/alpha-nvim",
             config = function()
                 require("plugin_config.alpha").setup()
             end,
-        } --]]
+        },
 
-        -- Git
-        use {
+        {
             "TimUntersberger/neogit",
-            requires = "nvim-lua/plenary.nvim",
+            dependencies = { "nvim-lua/plenary.nvim" },
             config = function()
                 require("plugin_config.neogit").setup()
             end,
-        }
+        },
 
-        -- basic Plugins
-        use 'jiangmiao/auto-pairs'
-        use 'gi1242/vim-tex-autoclose'
-        -- Vim Plugins
-        use { 'lervag/vimtex' }
-        -- Snippets
-        --use {'sirver/ultisnips'}
-        --use({
-        --"L3MON4D3/LuaSnip",
-        -- follow latest release.
-        --tag = "v<CurrentMajor>.*",
-        -- install jsregexp (optional!:).
-        --run = "make install_jsregexp"
-        --})
+        "jiangmiao/auto-pairs",
+        "gi1242/vim-tex-autoclose",
+        "lervag/vimtex",
+        "sirver/ultisnips",
+        "ckunte/latex-snippets-vim",
 
-        use { 'sirver/ultisnips' }
-        use { 'ckunte/latex-snippets-vim' }
+        { "neovim/nvim-lspconfig" },
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "simrat39/rust-tools.nvim",
 
+        "kyazdani42/nvim-tree.lua",
+        "preservim/tagbar",
+        "folke/todo-comments.nvim",
 
-        -- general lsp config (language server protocol)
-        use {
-            'neovim/nvim-lspconfig',
-            tag = 'v0.11.0'
-        }
-        -- Rust config
-        use { 'williamboman/mason.nvim' }
-        use { 'williamboman/mason-lspconfig.nvim' }
-        use { 'simrat39/rust-tools.nvim' }
-
-        use { 'kyazdani42/nvim-tree.lua' }
-        use { 'preservim/tagbar' }
-        use { 'folke/todo-comments.nvim' }
-        use {
+        {
             "folke/trouble.nvim",
-            requires = "nvim-tree/nvim-web-devicons",
+            dependencies = { "nvim-tree/nvim-web-devicons" },
             config = function()
-                require("trouble").setup {}
-            end
-        }
-        -- Completion framework:
-        use 'hrsh7th/nvim-cmp'
+                require("trouble").setup({})
+            end,
+        },
 
-        -- LSP completion source:
-        use 'hrsh7th/cmp-nvim-lsp'
+        "hrsh7th/nvim-cmp",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-nvim-lua",
+        "hrsh7th/cmp-nvim-lsp-signature-help",
+        "hrsh7th/cmp-vsnip",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/vim-vsnip",
 
-        -- Useful completion sources:
-        use 'hrsh7th/cmp-nvim-lua'
-        use 'hrsh7th/cmp-nvim-lsp-signature-help'
-        use 'hrsh7th/cmp-vsnip'
-        use 'hrsh7th/cmp-path'
-        use 'hrsh7th/cmp-buffer'
-        use 'hrsh7th/vim-vsnip'
-
-        use {
-            'nvim-treesitter/nvim-treesitter',
-            run = ':TSUpdate',
+        {
+            "nvim-treesitter/nvim-treesitter",
+            branch = "master",
+            build = ":TSUpdate",
             config = function()
-                require("nvim-treesitter.configs").setup {
-                    ensure_installed = "python",
+                local ok, configs = pcall(require, "nvim-treesitter.configs")
+                if not ok then
+                    return
+                end
+
+                configs.setup({
+                    ensure_installed = { "lua", "python", "vim" },
+                    auto_install = false,
+                    sync_install = false,
                     highlight = {
                         enable = true,
-                    }
-                }
-            end
-        }
-        -- lua language server
-        use { "folke/neodev.nvim" }
-        -- python library highlighting
-        use { 'numirias/semshi', ft = 'python', run = ':UpdateRemotePlugins',
+                    },
+                })
+            end,
+        },
+
+        "folke/neodev.nvim",
+
+        {
+            "numirias/semshi",
+            ft = "python",
+            build = ":UpdateRemotePlugins",
+        },
+
+        "ixru/nvim-markdown",
+        "iamcco/markdown-preview.nvim",
+        "edluffy/hologram.nvim",
+
+        {
+            "nvim-lualine/lualine.nvim",
+            dependencies = { "nvim-tree/nvim-web-devicons" },
             config = function()
-            end
-        }
-        -- markdown
-        use { 'ixru/nvim-markdown' }
-        use { 'iamcco/markdown-preview.nvim' }
-
-        -- image viewer
-        use { 'edluffy/hologram.nvim' }
-
-        use {
-            'nvim-lualine/lualine.nvim',
-            requires = { 'nvim-tree/nvim-web-devicons', opt = true },
-            config = function()
-                require("lualine").setup(
-                    {}
-                )
-            end
-        }
-
-
-        if packer_bootstrap then
-            print "Restart Neovim required after installation!"
-            require("packer").sync()
-        end
-    end
-
-    packer_init()
-
-    local packer = require "packer"
-    packer.init(conf)
-    packer.startup(plugins)
+                require("lualine").setup({
+                    options = {
+                        theme = "auto",
+                        globalstatus = true,
+                    },
+                })
+            end,
+        },
+    })
 end
 
 return M
