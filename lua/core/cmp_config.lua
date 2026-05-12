@@ -1,5 +1,10 @@
 -- Completion Plugin Setup
 local cmp = require'cmp'
+
+local function can_call(fn_name)
+  return pcall(vim.fn[fn_name])
+end
+
 cmp.setup({
   -- Enable LSP snippets
   snippet = {
@@ -13,7 +18,7 @@ cmp.setup({
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif vim.fn["UltiSnips#CanExpandSnippet"]() == 1 or vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+      elseif can_call("UltiSnips#CanExpandSnippet") and (vim.fn["UltiSnips#CanExpandSnippet"]() == 1 or vim.fn["UltiSnips#CanJumpForwards"]() == 1) then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(ultisnips_expand_or_jump)", true, true, true), "")
       else
         fallback()
@@ -22,7 +27,7 @@ cmp.setup({
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+      elseif can_call("UltiSnips#CanJumpBackwards") and vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(ultisnips_jump_backward)", true, true, true), "")
       else
         fallback()

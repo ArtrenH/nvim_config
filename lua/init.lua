@@ -8,6 +8,10 @@ require('core.lsp_config')
 require('core.cmp_config')
 require('core.diagnostics_config')
 
+if vim.fn.executable("python3") == 1 then
+    vim.g.python3_host_prog = vim.fn.exepath("python3")
+end
+
 vim.g.UltiSnipsSnippetsDir = vim.fn.stdpath("config") .. "/UltiSnips"
 
 vim.g.vimtex_quickfix_ignore_filters = {
