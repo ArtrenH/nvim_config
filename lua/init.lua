@@ -1,3 +1,36 @@
+local function python_with_pynvim()
+    local candidates = {
+        vim.fn.exepath("python3"),
+        "/opt/homebrew/bin/python3",
+        "/usr/local/bin/python3",
+    }
+
+    for _, py in ipairs(candidates) do
+        if py ~= "" and vim.fn.executable(py) == 1 then
+            local cmd = { py, "-c", "import pynvim" }
+            if vim.fn.system(cmd) and vim.v.shell_error == 0 then
+                return py
+            end
+        end
+    end
+
+    return ""
+end
+
+local py = python_with_pynvim()
+if py ~= "" then
+    vim.g.python3_host_prog = py
+end
+
+if vim.F and vim.F.ensure_nil == nil then
+    vim.F.ensure_nil = function(v)
+        if v == vim.NIL then
+            return nil
+        end
+        return v
+    end
+end
+
 require("plugins").setup()
 
 require("settings.opts")
@@ -7,10 +40,6 @@ require('core.lsp_config')
 -- cmp config
 require('core.cmp_config')
 require('core.diagnostics_config')
-
-if vim.fn.executable("python3") == 1 then
-    vim.g.python3_host_prog = vim.fn.exepath("python3")
-end
 
 vim.g.UltiSnipsSnippetsDir = vim.fn.stdpath("config") .. "/UltiSnips"
 
