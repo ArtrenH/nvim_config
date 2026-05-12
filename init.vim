@@ -7,7 +7,6 @@ lua require("init")
 " basic options (easier with vimscript than with lua) "
 set nofoldenable
 let g:UltiSnipsExpandTrigger = '<tab>' "snippet shortcut"
-let g:UltiSnipsSnippetsDir = "~/.nvim/UltiSnips"
 let g:vim_markdown_math = 1 "math highlighting in markdown"
 
 function MyCustomHighlights()

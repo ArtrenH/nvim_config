@@ -8,6 +8,8 @@ require('core.lsp_config')
 require('core.cmp_config')
 require('core.diagnostics_config')
 
+vim.g.UltiSnipsSnippetsDir = vim.fn.stdpath("config") .. "/UltiSnips"
+
 vim.g.vimtex_quickfix_ignore_filters = {
     'LaTeX Warning: Reference',
 }
