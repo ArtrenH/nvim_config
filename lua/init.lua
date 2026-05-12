@@ -22,15 +22,6 @@ if py ~= "" then
     vim.g.python3_host_prog = py
 end
 
-if vim.F and vim.F.ensure_nil == nil then
-    vim.F.ensure_nil = function(v)
-        if v == vim.NIL then
-            return nil
-        end
-        return v
-    end
-end
-
 require("plugins").setup()
 
 require("settings.opts")
