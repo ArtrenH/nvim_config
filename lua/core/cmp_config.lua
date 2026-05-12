@@ -44,7 +44,6 @@ cmp.setup({
     { name = 'nvim_lsp_signature_help'},            -- display function signatures with current parameter emphasized
     { name = 'nvim_lua', keyword_length = 2},       -- complete neovim's Lua runtime API such vim.lsp.*
     { name = 'buffer', keyword_length = 2 },        -- source current buffer
-    { name = 'ultisnips' },
     { name = 'calc'},                               -- source for math calculation
   },
   window = {
@@ -56,7 +55,6 @@ cmp.setup({
       format = function(entry, item)
           local menu_icon ={
               nvim_lsp = 'λ',
-              ultisnips = 'snip',
               buffer = 'Ω',
               path = '🖫',
           }
@@ -68,7 +66,8 @@ cmp.setup({
 
 cmp.setup.filetype('tex', {
 	sources = {
-    { name = 'nvim_lsp', keyword_length = 3 },      -- from language server
-		{ name = 'ultisnips' }
+		{ name = 'nvim_lsp', keyword_length = 3 },
+		{ name = 'buffer', keyword_length = 2 },
+		{ name = 'path' },
 	}
 })
