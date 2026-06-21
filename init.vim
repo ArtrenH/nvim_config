@@ -1,10 +1,10 @@
 lua require("init")
 
-" basic options (easier with vimscript than with lua) "
 set nofoldenable
-let g:UltiSnipsExpandTrigger = '<tab>' "snippet shortcut"
-let g:vim_markdown_math = 1 "math highlighting in markdown"
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:vim_markdown_math = 1
 
+" Keep semshi's Python highlights readable on the active colorscheme.
 function MyCustomHighlights()
     hi semshiGlobal ctermfg=green guifg=#ffffff
     hi semshiLocal ctermfg=green guifg=#000000
@@ -14,12 +14,7 @@ endfunction
 autocmd FileType python call MyCustomHighlights()
 let g:semshi#python#self_call_syn_group = 'Function'
 
-" notes:
-" https://github.com/vim-python/python-syntax
-" https://github.com/nvim-treesitter/nvim-treesitter
-" https://stackoverflow.com/questions/69850464/why-doesnt-neovim-highlight-the-entire-syntax
-
-
+" Use the native PDF viewer on each supported platform.
 if has('macunix')
   let g:vimtex_view_method = 'skim'
 elseif has('unix')

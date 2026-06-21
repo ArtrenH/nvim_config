@@ -1,48 +1,21 @@
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "tex",
-	callback = function()
-		vim.opt_local.shiftwidth = 4
-		vim.opt_local.tabstop = 4
-		vim.opt_local.softtabstop = 4
-		vim.opt.smarttab = false
-		vim.opt.expandtab = false
-		vim.opt.preserveindent = false
-		vim.opt.copyindent = false
-	end
-})
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "html",
-	callback = function()
-		vim.opt_local.shiftwidth = 4
-		vim.opt_local.tabstop = 4
-		vim.opt_local.softtabstop = 4
-		vim.opt.smarttab = false
-		vim.opt.expandtab = false
-		vim.opt.preserveindent = false
-		vim.opt.copyindent = false
-	end
-})
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "yml",
-	callback = function()
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.tabstop = 2
-		vim.opt_local.softtabstop = 2
-		vim.opt.smarttab = false
-		vim.opt.expandtab = false
-		vim.opt.preserveindent = false
-		vim.opt.copyindent = false
-	end
-})
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "markdown",
-	callback = function()
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.tabstop = 2
-		vim.opt_local.softtabstop = 2
-		vim.opt.smarttab = false
-		vim.opt.expandtab = false
-		vim.opt.preserveindent = false
-		vim.opt.copyindent = false
-	end
-})
+local widths = {
+  html = 4,
+  markdown = 2,
+  tex = 4,
+  yml = 2,
+}
+
+for filetype, width in pairs(widths) do
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = filetype,
+    callback = function()
+      vim.opt_local.shiftwidth = width
+      vim.opt_local.tabstop = width
+      vim.opt_local.softtabstop = width
+      vim.opt_local.smarttab = false
+      vim.opt_local.expandtab = false
+      vim.opt_local.preserveindent = false
+      vim.opt_local.copyindent = false
+    end,
+  })
+end

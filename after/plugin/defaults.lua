@@ -1,23 +1,22 @@
-local g = vim.g
 local opt = vim.opt
 
-opt.termguicolors = true -- Enable colors in terminal
-opt.hlsearch = true --Set highlight on search
-opt.number = true --Make line numbers default
-opt.relativenumber = true --Make relative number default
-opt.mouse = "a" --Enable mouse mode
-opt.breakindent = true --Enable break indent
-opt.undofile = true --Save undo history
-opt.ignorecase = true --Case insensitive searching unless /C or capital in search
-opt.smartcase = true -- Smart case
-opt.updatetime = 250 --Decrease update time
-opt.signcolumn = "yes" -- Always show sign column
-opt.clipboard = "unnamedplus" -- Access system clipboard
+opt.termguicolors = true
+opt.hlsearch = true
+opt.number = true
+opt.relativenumber = true
+opt.mouse = "a"
+opt.breakindent = true
+opt.undofile = true
+opt.ignorecase = true
+opt.smartcase = true
+opt.updatetime = 250
+opt.signcolumn = "yes"
+opt.clipboard = "unnamedplus"
 
 -- Highlight on yank
-vim.cmd [[
+vim.cmd([[
   augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.hl.on_yank()
   augroup end
-]]
+]])
