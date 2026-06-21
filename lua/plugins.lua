@@ -52,7 +52,13 @@ function M.setup()
         "williamboman/mason-lspconfig.nvim",
         "simrat39/rust-tools.nvim",
 
-        "kyazdani42/nvim-tree.lua",
+        {
+            "nvim-tree/nvim-tree.lua",
+            dependencies = { "nvim-tree/nvim-web-devicons" },
+            config = function()
+                require("nvim-tree").setup({})
+            end,
+        },
         "preservim/tagbar",
         "folke/todo-comments.nvim",
 
