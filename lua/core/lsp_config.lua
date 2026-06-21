@@ -44,6 +44,15 @@ vim.lsp.config('rust_analyzer', {
 vim.lsp.config('texlab', {
     on_attach = on_attach,
     capabilities = capabilities,
+    settings = {
+        texlab = {
+            experimental = {
+                labelDefinitionCommands = {
+                    "nllabel",
+                },
+            },
+        },
+    },
 })
 
 vim.lsp.config('pyright', {
