@@ -41,6 +41,12 @@ function M.setup()
             end,
         },
 
+        {
+            "kdheepak/lazygit.nvim",
+            cmd = "LazyGit",
+            dependencies = { "nvim-lua/plenary.nvim" },
+        },
+
         "jiangmiao/auto-pairs",
         "gi1242/vim-tex-autoclose",
         "lervag/vimtex",

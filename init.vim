@@ -1,8 +1,4 @@
-
-
-
 lua require("init")
-
 
 " basic options (easier with vimscript than with lua) "
 set nofoldenable

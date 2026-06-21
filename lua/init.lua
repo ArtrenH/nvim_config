@@ -22,7 +22,17 @@ if py ~= "" then
     vim.g.python3_host_prog = py
 end
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+
 require("plugins").setup()
+
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle nvim-tree" })
+vim.keymap.set("n", "<leader>E", function()
+    require("nvim-tree.api").tree.toggle_hidden_filter()
+end, { desc = "Toggle nvim-tree hidden files" })
+vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Open LazyGit" })
 
 require("settings.opts")
 require('settings.tabwidth')
