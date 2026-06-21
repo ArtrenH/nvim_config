@@ -16,9 +16,10 @@ cmp.setup({
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif can_call("UltiSnips#CanExpandSnippet") and (vim.fn["UltiSnips#CanExpandSnippet"]() == 1 or vim.fn["UltiSnips#CanJumpForwards"]() == 1) then
+      if can_call("UltiSnips#CanExpandSnippet") and (vim.fn["UltiSnips#CanExpandSnippet"]() == 1 or vim.fn["UltiSnips#CanJumpForwards"]() == 1) then
+        if cmp.visible() then
+          cmp.close()
+        end
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(ultisnips_expand_or_jump)", true, true, true), "")
       else
         fallback()
