@@ -1,3 +1,4 @@
+-- Define short ASCII diagnostic signs for the sign column.
 local function sign(opts)
   vim.fn.sign_define(opts.name, {
     texthl = opts.name,
@@ -11,6 +12,7 @@ sign({ name = "DiagnosticSignWarn", text = "W" })
 sign({ name = "DiagnosticSignHint", text = "H" })
 sign({ name = "DiagnosticSignInfo", text = "I" })
 
+-- Keep inline diagnostics quiet, but show details on hover via floating windows.
 vim.diagnostic.config({
   virtual_text = false,
   signs = true,
@@ -25,6 +27,7 @@ vim.diagnostic.config({
   },
 })
 
+-- Open the diagnostic float automatically when the cursor rests on a problem.
 vim.cmd([[
   augroup DiagnosticFloat
     autocmd!

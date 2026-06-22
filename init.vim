@@ -1,6 +1,10 @@
+" Hand off most startup configuration to Lua modules.
 lua require("init")
 
+" Keep folds open by default and let filetype/plugin settings opt in later.
 set nofoldenable
+
+" Plugin globals that must be visible to Vimscript-based plugins.
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:vim_markdown_math = 1
 

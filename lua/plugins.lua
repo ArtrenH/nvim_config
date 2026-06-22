@@ -1,6 +1,7 @@
 local M = {}
 
 function M.setup()
+  -- Install lazy.nvim automatically when this config is used on a fresh machine.
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
   if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({
@@ -14,6 +15,7 @@ function M.setup()
   end
   vim.opt.rtp:prepend(lazypath)
 
+  -- Plugin groups are organized by the area of Neovim they configure.
   require("lazy").setup({
     -- UI and navigation
     {
@@ -34,6 +36,7 @@ function M.setup()
       "nvim-tree/nvim-tree.lua",
       dependencies = { "nvim-tree/nvim-web-devicons" },
       config = function()
+        -- Keep nvim-tree defaults and expose behavior through leader mappings.
         require("nvim-tree").setup({})
       end,
     },
@@ -43,6 +46,7 @@ function M.setup()
       "folke/trouble.nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" },
       config = function()
+        -- Configure Trouble with defaults for diagnostics/location-list views.
         require("trouble").setup({})
       end,
     },
@@ -50,6 +54,7 @@ function M.setup()
       "nvim-lualine/lualine.nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" },
       config = function()
+        -- Use the active colorscheme and a single statusline across splits.
         require("lualine").setup({
           options = {
             theme = "auto",
@@ -99,12 +104,14 @@ function M.setup()
       branch = "master",
       build = ":TSUpdate",
       config = function()
+        -- Treesitter may be unavailable immediately after bootstrap; fail softly.
         local ok, configs = pcall(require, "nvim-treesitter.configs")
         if not ok then
           return
         end
 
         configs.setup({
+          -- Only manage parsers used by this config; avoid surprise installs.
           ensure_installed = { "lua", "python", "vim" },
           auto_install = false,
           sync_install = false,
