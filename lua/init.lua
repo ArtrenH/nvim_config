@@ -31,8 +31,39 @@ vim.g.maplocalleader = " "
 -- Disable Space's default motion behavior so it can be used only as leader.
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
+-- Plugin globals that must be visible to Vimscript-based plugins.
+vim.g.UltiSnipsExpandTrigger = "<tab>"
+vim.g.vim_markdown_math = 1
+
+-- Use the native PDF viewer on each supported platform.
+if vim.fn.has("macunix") == 1 then
+  vim.g.vimtex_view_method = "skim"
+elseif vim.fn.has("unix") == 1 then
+  vim.g.vimtex_view_method = "zathura"
+end
+
+local function register_treesitter_compat_directives()
+  -- Compatibility for nvim-treesitter markdown injections on this Neovim build.
+  vim.treesitter.query.add_directive("set-lang-from-info-string!", function(match, _, source, pred, metadata)
+    local capture_id = pred[2]
+    local nodes = match[capture_id]
+    if type(capture_id) ~= "number" or not nodes or not nodes[1] then
+      return
+    end
+
+    local info_string = vim.treesitter.get_node_text(nodes[1], source, { metadata = metadata[capture_id] })
+    local alias = info_string:match("^%s*([%w_+-]+)")
+    if alias then
+      metadata["injection.language"] = vim.filetype.match({ filename = "a." .. alias }) or alias
+    end
+  end, { force = true })
+end
+
+register_treesitter_compat_directives()
+
 -- Bootstrap lazy.nvim and register all plugins before loading plugin-backed config.
 require("plugins").setup()
+register_treesitter_compat_directives()
 
 -- Core editor behavior and filetype-specific indentation.
 require("settings.opts")

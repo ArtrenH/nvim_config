@@ -6,5 +6,6 @@ vim.opt.shortmess = vim.opt.shortmess + { c = true }
 vim.opt.updatetime = 300
 
 -- Fold with Treesitter when a parser is available.
+vim.opt.foldenable = false
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"

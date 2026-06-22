@@ -119,11 +119,6 @@ function M.setup()
         })
       end,
     },
-    {
-      "numirias/semshi",
-      ft = "python",
-      build = ":UpdateRemotePlugins",
-    },
     "ixru/nvim-markdown",
     "iamcco/markdown-preview.nvim",
     "edluffy/hologram.nvim",
